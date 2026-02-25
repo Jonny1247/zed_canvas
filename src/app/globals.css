@@ -4,47 +4,26 @@
 
 @layer base {
   :root {
-    --background: 33 38% 94%; /* #F7F0E8 - Soft warm cream */
-    --foreground: 20 20% 10%;
-    --card: 0 0% 100%;
-    --card-foreground: 20 20% 10%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 20 20% 10%;
-    --primary: 25 70% 50%; /* #D97326 - Rich earthy orange */
-    --primary-foreground: 33 38% 98%;
-    --secondary: 25 30% 90%;
-    --secondary-foreground: 25 70% 30%;
-    --muted: 25 10% 85%;
-    --muted-foreground: 25 10% 35%;
-    --accent: 0 59% 47%; /* #BF3131 - Deep striking red */
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 25 20% 85%;
-    --input: 25 20% 85%;
-    --ring: 25 70% 50%;
-    --radius: 0.75rem;
-  }
-  .dark {
-    --background: 20 20% 5%;
-    --foreground: 33 38% 94%;
-    --card: 20 20% 8%;
-    --card-foreground: 33 38% 94%;
-    --popover: 20 20% 8%;
-    --popover-foreground: 33 38% 94%;
-    --primary: 25 70% 55%;
-    --primary-foreground: 20 20% 10%;
-    --secondary: 25 30% 15%;
-    --secondary-foreground: 25 70% 80%;
-    --muted: 25 10% 20%;
-    --muted-foreground: 25 10% 70%;
-    --accent: 0 59% 50%;
+    --background: 0 0% 2%; /* Deep artistic black */
+    --foreground: 0 0% 98%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 100%; /* Pure white for high-contrast highlights */
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 90%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 0 0% 25%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 25 20% 20%;
-    --input: 25 20% 20%;
-    --ring: 25 70% 55%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 0 0% 100%;
+    --radius: 0.5rem;
   }
 }
 
@@ -53,18 +32,26 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-body;
+    @apply bg-background text-foreground font-body antialiased;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-headline;
+    @apply font-headline tracking-tight;
   }
 }
 
 .african-pattern {
-  background-image: radial-gradient(var(--primary) 0.5px, transparent 0.5px);
-  background-size: 10px 10px;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 0.5px, transparent 0.5px);
+  background-size: 20px 20px;
 }
 
 .clay-shadow {
-  box-shadow: 0 10px 30px -10px rgba(217, 115, 38, 0.3);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.8);
+}
+
+.gallery-border {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-gradient {
+  background: radial-gradient(circle at center, rgba(40, 40, 40, 0.4) 0%, rgba(0, 0, 0, 0) 70%);
 }
