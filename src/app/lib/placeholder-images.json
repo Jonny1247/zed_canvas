@@ -3,33 +3,45 @@
   "placeholderImages": [
     {
       "id": "art-1",
-      "description": "Vibrant Zambian sunset over the Zambezi river, acrylic on canvas.",
-      "imageUrl": "https://picsum.photos/seed/zambia1/800/600",
-      "imageHint": "Zambian sunset"
+      "title": "Ingoma: The Divine Rhythm",
+      "description": "A detailed acrylic study of the traditional Ngoni drum, capturing the resonance of Zambian heritage.",
+      "imageUrl": "https://picsum.photos/seed/ingoma/800/1000",
+      "imageHint": "Zambian drum"
     },
     {
       "id": "art-2",
-      "description": "Abstract patterns inspired by traditional Lozi basketry.",
-      "imageUrl": "https://picsum.photos/seed/zambia2/800/800",
-      "imageHint": "African patterns"
+      "title": "Mosi-oa-Tunya",
+      "description": "The Smoke That Thunders. A breathtaking impressionist view of the Victoria Falls during the emerald season.",
+      "imageUrl": "https://picsum.photos/seed/falls/1200/800",
+      "imageHint": "Victoria Falls"
     },
     {
       "id": "art-3",
-      "description": "Portrait of a Chewa dancer in ceremonial regalia.",
-      "imageUrl": "https://picsum.photos/seed/zambia3/600/800",
-      "imageHint": "African dancer"
+      "title": "Dr. Kenneth Kaunda: The Patriot",
+      "description": "A solemn and vibrant portrait of Zambia's founding father, celebrating the spirit of One Zambia, One Nation.",
+      "imageUrl": "https://picsum.photos/seed/kk/800/800",
+      "imageHint": "Kenneth Kaunda"
     },
     {
       "id": "art-4",
-      "description": "Market scene in Lusaka, oil painting showing vibrant life.",
-      "imageUrl": "https://picsum.photos/seed/zambia4/800/600",
-      "imageHint": "Lusaka market"
+      "title": "Lusaka Skyline at Dusk",
+      "description": "Contemporary cityscape depicting the urban pulse of Cairo Road as the golden hour settles over the capital.",
+      "imageUrl": "https://picsum.photos/seed/lusaka/1000/600",
+      "imageHint": "Lusaka city"
     },
     {
-      "id": "artist-1",
-      "description": "Profile photo of a contemporary Zambian artist.",
-      "imageUrl": "https://picsum.photos/seed/artist1/400/400",
-      "imageHint": "African artist"
+      "id": "art-5",
+      "title": "Luangwa Giant",
+      "description": "A charcoal and ochre depiction of a majestic elephant roaming the South Luangwa National Park.",
+      "imageUrl": "https://picsum.photos/seed/elephant/800/600",
+      "imageHint": "Zambian elephant"
+    },
+    {
+      "id": "art-6",
+      "title": "Chitenge Reverie",
+      "description": "Abstract patterns and textures inspired by the vibrant textiles found in markets across the Copperbelt.",
+      "imageUrl": "https://picsum.photos/seed/chitenge/800/1000",
+      "imageHint": "African textile"
     }
   ]
 }

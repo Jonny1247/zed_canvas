@@ -1,13 +1,14 @@
+
 import Image from "next/image";
 import Link from "next/link";
 import { Navbar } from "@/components/layout/Navbar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/app/lib/placeholder-images";
-import { ArrowRight, Star, Palette } from "lucide-react";
+import { ArrowRight, Palette } from "lucide-react";
 
 export default function Home() {
-  const featuredArt = PlaceHolderImages.filter(img => img.id.startsWith('art'));
+  const featuredArt = PlaceHolderImages.slice(0, 3);
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -43,13 +44,16 @@ export default function Home() {
             <div className="relative hidden md:block group">
               <div className="relative z-10 gallery-border overflow-hidden shadow-[0_0_100px_rgba(255,255,255,0.05)] transition-transform duration-700 hover:scale-[1.02]">
                 <Image 
-                  src={PlaceHolderImages[0].imageUrl} 
-                  alt="Zambian Art" 
+                  src={PlaceHolderImages[1].imageUrl} 
+                  alt={PlaceHolderImages[1].title} 
                   width={600} 
                   height={800}
                   className="object-cover h-[700px] w-full grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
-                  data-ai-hint="Zambian art"
+                  data-ai-hint={PlaceHolderImages[1].imageHint}
                 />
+                <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 to-transparent">
+                  <p className="text-white font-headline text-2xl font-bold">{PlaceHolderImages[1].title}</p>
+                </div>
               </div>
               <div className="absolute -inset-4 border border-white/5 -z-10 -rotate-1 group-hover:rotate-0 transition-transform duration-700"></div>
             </div>
@@ -72,23 +76,24 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16">
-              {featuredArt.map((art, idx) => (
+              {featuredArt.map((art) => (
                 <Link href={`/artwork/${art.id}`} key={art.id}>
                   <Card className="group overflow-hidden border-none bg-transparent hover:translate-y-[-8px] transition-all duration-500">
                     <CardContent className="p-0">
                       <div className="relative aspect-[4/5] overflow-hidden mb-6 gallery-border bg-neutral-900">
                         <Image 
                           src={art.imageUrl} 
-                          alt={art.description} 
+                          alt={art.title} 
                           fill
                           className="object-cover transition-transform group-hover:scale-105 duration-700"
+                          data-ai-hint={art.imageHint}
                         />
                         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                           <span className="text-white font-bold tracking-[0.2em] uppercase text-sm border-b border-white pb-1">Enlarge</span>
                         </div>
                       </div>
                       <div className="space-y-2">
-                        <h3 className="text-2xl font-bold font-headline">Collection Piece #{idx + 1}</h3>
+                        <h3 className="text-2xl font-bold font-headline">{art.title}</h3>
                         <p className="text-sm text-muted-foreground uppercase tracking-widest font-bold">Chanda Mwamba</p>
                         <p className="text-white font-light text-xl mt-4">ZMW 2,500</p>
                       </div>
