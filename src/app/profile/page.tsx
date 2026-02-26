@@ -24,7 +24,7 @@ export default function ProfilePage() {
   const collectedArtworks = PlaceHolderImages.slice(4, 6);
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-background text-foreground">
       <Navbar />
       
       <main className="flex-grow container mx-auto px-4 py-12">
@@ -33,7 +33,7 @@ export default function ProfilePage() {
           <div className="flex flex-col md:flex-row gap-12 items-start">
             <div className="relative h-48 w-48 shrink-0 gallery-border grayscale hover:grayscale-0 transition-all duration-700 overflow-hidden group">
               <Image 
-                src="https://picsum.photos/seed/profile-chanda/400/400" 
+                src="https://picsum.photos/seed/profile-musa/400/400" 
                 alt="Profile" 
                 fill 
                 className="object-cover group-hover:scale-110 transition-transform duration-1000"
@@ -44,7 +44,7 @@ export default function ProfilePage() {
             <div className="flex-grow space-y-6">
               <div className="flex flex-wrap items-center justify-between gap-6">
                 <div className="space-y-1">
-                  <h1 className="text-6xl font-bold font-headline tracking-tighter">Chanda Mwamba</h1>
+                  <h1 className="text-6xl font-bold font-headline tracking-tighter">Musa Roy</h1>
                   <div className="flex items-center gap-4 text-muted-foreground text-sm font-bold uppercase tracking-widest">
                     <span className="flex items-center gap-1"><MapPin className="h-3 w-3" /> Lusaka, ZM</span>
                     <span>Joined Jan 2024</span>
@@ -140,21 +140,11 @@ export default function ProfilePage() {
                   </div>
                 </div>
               ))}
-              {collectedArtworks.length === 0 && (
-                <div className="col-span-full py-20 text-center space-y-4">
-                  <Grid3X3 className="h-12 w-12 text-muted-foreground mx-auto opacity-20" />
-                  <p className="text-muted-foreground font-light italic">Your collection is currently empty.</p>
-                  <Button variant="link" className="text-white uppercase text-[10px] tracking-widest font-bold" asChild>
-                    <Link href="/explore">Browse the Gallery</Link>
-                  </Button>
-                </div>
-              )}
             </div>
           </TabsContent>
 
           <TabsContent value="favorites" className="mt-0">
              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {/* Reuse some artworks for favorites demo */}
               {PlaceHolderImages.slice(2, 5).map((art) => (
                 <Link href={`/artwork/${art.id}`} key={art.id} className="group relative">
                   <div className="relative aspect-square gallery-border overflow-hidden mb-4 bg-neutral-900">

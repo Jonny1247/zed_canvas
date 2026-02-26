@@ -17,7 +17,6 @@ export default function ArtworkDetailPage() {
   const { toast } = useToast();
   const id = params.id as string;
   
-  // Find specific artwork from our updated data
   const artwork = PlaceHolderImages.find(img => img.id === id) || PlaceHolderImages[0];
 
   const handlePurchase = () => {
@@ -28,7 +27,7 @@ export default function ArtworkDetailPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-background text-foreground">
       <Navbar />
       <main className="flex-grow container mx-auto px-4 py-8">
         <button 
@@ -79,8 +78,8 @@ export default function ArtworkDetailPage() {
                   <Image src="https://picsum.photos/seed/artist/40/40" alt="Artist" width={40} height={40} className="object-cover" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium">Chanda Mwamba</p>
-                  <Link href="/profile/chanda" className="text-xs text-muted-foreground font-bold hover:text-white transition-colors">View Portfolio</Link>
+                  <p className="text-sm font-medium">Musa Roy</p>
+                  <Link href="/profile" className="text-xs text-muted-foreground font-bold hover:text-white transition-colors">View Portfolio</Link>
                 </div>
               </div>
               <div className="text-3xl font-bold text-white py-4 border-y border-white/5">
@@ -94,7 +93,7 @@ export default function ArtworkDetailPage() {
                   Acquire Now
                 </Button>
                 <Button variant="outline" size="lg" className="h-14 text-lg font-bold border-white/10 text-white hover:bg-white/5 rounded-none" asChild>
-                  <Link href="/messages?artist=chanda">
+                  <Link href="/messages">
                     <MessageSquare className="mr-2 h-5 w-5" /> Inquire
                   </Link>
                 </Button>
@@ -134,7 +133,7 @@ export default function ArtworkDetailPage() {
                 <ShieldCheck className="h-5 w-5 text-white/40 shrink-0" />
                 <div>
                   <p className="font-bold text-sm">Escrow Protection</p>
-                  <p className="text-xs text-muted-foreground">Payment is only released to the artist after delivery is verified.</p>
+                  <p className="text-xs text-muted-foreground">Payment is only released after delivery is verified.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">

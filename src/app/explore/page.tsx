@@ -6,14 +6,13 @@ import { PlaceHolderImages } from "@/app/lib/placeholder-images";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Filter, SlidersHorizontal, ArrowUpRight } from "lucide-react";
 
 export default function ExplorePage() {
   const artworks = PlaceHolderImages;
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-background text-foreground">
       <Navbar />
       <main className="container mx-auto px-4 py-12">
         <header className="mb-16 space-y-6 max-w-4xl">
@@ -21,7 +20,7 @@ export default function ExplorePage() {
             <h1 className="text-6xl md:text-8xl font-bold font-headline tracking-tighter">The Collection</h1>
             <p className="text-xl text-muted-foreground font-light leading-relaxed">
               From the thunder of Mosi-oa-Tunya to the rhythmic soul of the Ingoma drum. 
-              Discover the curated essence of Zambian artistry.
+              Discover the curated essence of Zambian artistry by Musa Roy.
             </p>
           </div>
           
@@ -63,7 +62,7 @@ export default function ExplorePage() {
                   <h3 className="font-bold text-3xl leading-none font-headline tracking-tight">{art.title}</h3>
                   <span className="text-xs font-bold font-mono pt-1">ZMW 3,500</span>
                 </div>
-                <p className="text-xs text-muted-foreground uppercase tracking-[0.2em] font-bold">Chanda Mwamba</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-[0.2em] font-bold">Musa Roy</p>
                 <p className="text-sm text-muted-foreground line-clamp-2 font-light leading-relaxed">
                   {art.description}
                 </p>

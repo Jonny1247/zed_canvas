@@ -12,7 +12,7 @@ export default function Home() {
   const heroImage = PlaceHolderImages.find(img => img.id === "art-2") || PlaceHolderImages[1];
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-background text-foreground">
       <Navbar />
       
       <main className="flex-grow">
@@ -71,7 +71,7 @@ export default function Home() {
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
               <div className="space-y-4">
                 <h2 className="text-5xl md:text-7xl font-bold font-headline tracking-tighter">Curated Works</h2>
-                <p className="text-muted-foreground text-xl font-light">Hand-selected narratives from our premier artists.</p>
+                <p className="text-muted-foreground text-xl font-light">Hand-selected narratives from Musa Roy.</p>
               </div>
               <Link href="/explore">
                 <Button variant="link" className="text-white group text-[10px] tracking-[0.3em] uppercase font-bold p-0 hover:no-underline">
@@ -101,7 +101,7 @@ export default function Home() {
                       </div>
                       <div className="space-y-3">
                         <h3 className="text-3xl font-bold font-headline tracking-tight">{art.title}</h3>
-                        <p className="text-[10px] text-muted-foreground uppercase tracking-[0.4em] font-bold">Chanda Mwamba</p>
+                        <p className="text-[10px] text-muted-foreground uppercase tracking-[0.4em] font-bold">Musa Roy</p>
                         <p className="text-white font-mono text-lg pt-4">ZMW 2,500</p>
                       </div>
                     </CardContent>
@@ -156,7 +156,7 @@ export default function Home() {
           <div className="space-y-8">
             <h4 className="font-bold text-white uppercase tracking-[0.3em] text-[10px]">Collective</h4>
             <ul className="space-y-4 text-xs text-muted-foreground font-bold tracking-widest uppercase">
-              <li><Link href="/about" className="hover:text-white transition-colors">Vision</Link></li>
+              <li><Link href="/profile" className="hover:text-white transition-colors">Musa Roy</Link></li>
               <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
               <li><Link href="/faq" className="hover:text-white transition-colors">Inquiries</Link></li>
               <li><Link href="/terms" className="hover:text-white transition-colors">Legal</Link></li>
