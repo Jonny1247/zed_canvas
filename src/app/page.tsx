@@ -101,7 +101,7 @@ export default function Home() {
                       <div className="space-y-3">
                         <h3 className="text-3xl font-bold font-headline tracking-tight">{art.title}</h3>
                         <p className="text-[10px] text-muted-foreground uppercase tracking-[0.4em] font-bold">{Artist.name}</p>
-                        <p className="text-white font-mono text-lg pt-4">ZMW {art.price.toLocaleString()}</p>
+                        <p className="text-white font-mono text-lg pt-4">ZMW {art.price?.toLocaleString() ?? "0"}</p>
                       </div>
                     </CardContent>
                   </Card>

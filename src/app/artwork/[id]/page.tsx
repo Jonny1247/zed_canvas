@@ -83,7 +83,7 @@ export default function ArtworkDetailPage() {
                 </div>
               </div>
               <div className="text-3xl font-bold text-white py-4 border-y border-white/5">
-                ZMW {artwork.price.toLocaleString()}
+                ZMW {artwork.price?.toLocaleString() ?? "0"}
               </div>
             </div>
 

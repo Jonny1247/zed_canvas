@@ -60,7 +60,7 @@ export default function ExplorePage() {
               <div className="space-y-3">
                 <div className="flex items-start justify-between">
                   <h3 className="font-bold text-3xl leading-none font-headline tracking-tight">{art.title}</h3>
-                  <span className="text-xs font-bold font-mono pt-1">ZMW {art.price.toLocaleString()}</span>
+                  <span className="text-xs font-bold font-mono pt-1">ZMW {art.price?.toLocaleString() ?? "0"}</span>
                 </div>
                 <p className="text-xs text-muted-foreground uppercase tracking-[0.2em] font-bold">{Artist.name}</p>
                 <p className="text-sm text-muted-foreground line-clamp-2 font-light leading-relaxed">
