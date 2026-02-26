@@ -1,5 +1,11 @@
 
 {
+  "artist": {
+    "name": "Musa Roy",
+    "profileImage": "https://picsum.photos/seed/musaroy-artist/800/1000",
+    "imageHint": "professional man portrait",
+    "bio": "Contemporary mixed-media artist exploring the intersection of traditional Zambian motifs and modern urban life. My work is inspired by the vibrant rhythms of the Copperbelt and the serene landscapes of our national parks."
+  },
   "placeholderImages": [
     {
       "id": "art-1",

@@ -3,7 +3,7 @@
 
 import { Navbar } from "@/components/layout/Navbar";
 import { Button } from "@/components/ui/button";
-import { PlaceHolderImages } from "@/app/lib/placeholder-images";
+import { PlaceHolderImages, Artist } from "@/app/lib/placeholder-images";
 import Image from "next/image";
 import { 
   Settings, 
@@ -31,12 +31,13 @@ export default function ProfilePage() {
         {/* Profile Header */}
         <section className="mb-20">
           <div className="flex flex-col md:flex-row gap-12 items-start">
-            <div className="relative h-48 w-48 shrink-0 gallery-border grayscale hover:grayscale-0 transition-all duration-700 overflow-hidden group">
+            <div className="relative h-64 w-64 shrink-0 gallery-border grayscale hover:grayscale-0 transition-all duration-700 overflow-hidden group">
               <Image 
-                src="https://picsum.photos/seed/profile-musa/400/400" 
-                alt="Profile" 
+                src={Artist.profileImage} 
+                alt={Artist.name} 
                 fill 
                 className="object-cover group-hover:scale-110 transition-transform duration-1000"
+                data-ai-hint={Artist.imageHint}
               />
               <div className="absolute inset-0 bg-black/20" />
             </div>
@@ -44,7 +45,7 @@ export default function ProfilePage() {
             <div className="flex-grow space-y-6">
               <div className="flex flex-wrap items-center justify-between gap-6">
                 <div className="space-y-1">
-                  <h1 className="text-6xl font-bold font-headline tracking-tighter">Musa Roy</h1>
+                  <h1 className="text-6xl font-bold font-headline tracking-tighter">{Artist.name}</h1>
                   <div className="flex items-center gap-4 text-muted-foreground text-sm font-bold uppercase tracking-widest">
                     <span className="flex items-center gap-1"><MapPin className="h-3 w-3" /> Lusaka, ZM</span>
                     <span>Joined Jan 2024</span>
@@ -63,7 +64,7 @@ export default function ProfilePage() {
               </div>
               
               <p className="max-w-2xl text-lg text-muted-foreground font-light leading-relaxed">
-                Contemporary mixed-media artist exploring the intersection of traditional Zambian motifs and modern urban life. My work is inspired by the vibrant rhythms of the Copperbelt and the serene landscapes of our national parks.
+                {Artist.bio}
               </p>
 
               <div className="flex gap-6 pt-4">

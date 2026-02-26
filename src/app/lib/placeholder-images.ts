@@ -9,4 +9,12 @@ export type ImagePlaceholder = {
   imageHint: string;
 };
 
+export type ArtistMetadata = {
+  name: string;
+  profileImage: string;
+  imageHint: string;
+  bio: string;
+};
+
 export const PlaceHolderImages: ImagePlaceholder[] = data.placeholderImages;
+export const Artist: ArtistMetadata = data.artist;

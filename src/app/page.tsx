@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Navbar } from "@/components/layout/Navbar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { PlaceHolderImages } from "@/app/lib/placeholder-images";
+import { PlaceHolderImages, Artist } from "@/app/lib/placeholder-images";
 import { ArrowRight, Palette, ArrowUpRight } from "lucide-react";
 
 export default function Home() {
@@ -29,7 +29,7 @@ export default function Home() {
                   Artistic <span className="text-white italic block">Soul</span>
                 </h1>
                 <p className="text-xl text-muted-foreground max-w-md leading-relaxed font-body font-light">
-                  A curated minimalist sanctuary for the finest masterpieces. From urban Lusaka to the wild rhythm of South Luangwa.
+                  A curated minimalist sanctuary for the finest masterpieces. Represented by <span className="text-white font-medium">{Artist.name}</span>.
                 </p>
               </div>
               <div className="flex flex-wrap gap-8 pt-4">
@@ -38,9 +38,9 @@ export default function Home() {
                     Enter Exhibition
                   </Button>
                 </Link>
-                <Link href="/sell">
+                <Link href="/profile">
                   <Button size="lg" variant="outline" className="h-16 px-12 text-[10px] tracking-[0.3em] uppercase font-bold border-white/20 text-white hover:bg-white hover:text-black rounded-none">
-                    Become an Exhibitor
+                    Meet The Artist
                   </Button>
                 </Link>
               </div>
@@ -71,7 +71,7 @@ export default function Home() {
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
               <div className="space-y-4">
                 <h2 className="text-5xl md:text-7xl font-bold font-headline tracking-tighter">Curated Works</h2>
-                <p className="text-muted-foreground text-xl font-light">Hand-selected narratives from Musa Roy.</p>
+                <p className="text-muted-foreground text-xl font-light">Hand-selected narratives from {Artist.name}.</p>
               </div>
               <Link href="/explore">
                 <Button variant="link" className="text-white group text-[10px] tracking-[0.3em] uppercase font-bold p-0 hover:no-underline">
@@ -101,13 +101,43 @@ export default function Home() {
                       </div>
                       <div className="space-y-3">
                         <h3 className="text-3xl font-bold font-headline tracking-tight">{art.title}</h3>
-                        <p className="text-[10px] text-muted-foreground uppercase tracking-[0.4em] font-bold">Musa Roy</p>
+                        <p className="text-[10px] text-muted-foreground uppercase tracking-[0.4em] font-bold">{Artist.name}</p>
                         <p className="text-white font-mono text-lg pt-4">ZMW 2,500</p>
                       </div>
                     </CardContent>
                   </Card>
                 </Link>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Artist Profile Section (Added as requested) */}
+        <section className="py-40 bg-black border-t border-white/5 overflow-hidden">
+          <div className="container mx-auto px-4 grid md:grid-cols-2 gap-24 items-center">
+            <div className="relative aspect-[3/4] gallery-border grayscale hover:grayscale-0 transition-all duration-1000 group">
+              <Image 
+                src={Artist.profileImage} 
+                alt={Artist.name} 
+                fill 
+                className="object-cover group-hover:scale-105 transition-transform duration-1000"
+                data-ai-hint={Artist.imageHint}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+            </div>
+            <div className="space-y-12">
+              <div className="space-y-6">
+                <h2 className="text-6xl md:text-8xl font-bold font-headline tracking-tighter">The Visionary</h2>
+                <h3 className="text-2xl font-bold uppercase tracking-[0.2em] text-white/60">{Artist.name}</h3>
+                <p className="text-xl text-muted-foreground font-light leading-relaxed max-w-lg">
+                  {Artist.bio}
+                </p>
+              </div>
+              <Link href="/profile">
+                <Button variant="outline" className="rounded-none border-white/20 text-white hover:bg-white hover:text-black transition-all h-16 px-12 text-[10px] tracking-[0.3em] uppercase font-bold">
+                  Explore Portfolio
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
@@ -140,7 +170,7 @@ export default function Home() {
                 Zambian Canvas
               </span>
             </div>
-            <p className="text-muted-foreground max-w-sm font-light leading-relaxed text-lg italic">
+            <p className="text-muted-foreground max-sm font-light leading-relaxed text-lg italic">
               "One Zambia, One Nation — Unified through artistic expression and cultural heritage."
             </p>
           </div>
@@ -156,7 +186,7 @@ export default function Home() {
           <div className="space-y-8">
             <h4 className="font-bold text-white uppercase tracking-[0.3em] text-[10px]">Collective</h4>
             <ul className="space-y-4 text-xs text-muted-foreground font-bold tracking-widest uppercase">
-              <li><Link href="/profile" className="hover:text-white transition-colors">Musa Roy</Link></li>
+              <li><Link href="/profile" className="hover:text-white transition-colors">{Artist.name}</Link></li>
               <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
               <li><Link href="/faq" className="hover:text-white transition-colors">Inquiries</Link></li>
               <li><Link href="/terms" className="hover:text-white transition-colors">Legal</Link></li>

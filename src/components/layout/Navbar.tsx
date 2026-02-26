@@ -1,8 +1,11 @@
+
 "use client";
 
 import Link from "next/link";
-import { Palette, Search, User, MessageSquare, PlusSquare, Heart } from "lucide-react";
+import { Palette, Search, User, MessageSquare, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Artist } from "@/app/lib/placeholder-images";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export function Navbar() {
   return (
@@ -42,9 +45,12 @@ export function Navbar() {
               </Button>
             </Link>
             <Link href="/profile">
-              <Button variant="ghost" size="icon" className="hover:bg-white/5">
-                <User className="h-5 w-5 text-muted-foreground hover:text-white" />
-              </Button>
+              <div className="h-10 w-10 p-0.5 rounded-full border border-white/10 hover:border-white transition-colors">
+                <Avatar className="h-full w-full">
+                  <AvatarImage src={Artist.profileImage} />
+                  <AvatarFallback className="bg-black text-[10px] font-bold text-white">MR</AvatarFallback>
+                </Avatar>
+              </div>
             </Link>
           </div>
           <Link href="/sell" className="hidden lg:block">
