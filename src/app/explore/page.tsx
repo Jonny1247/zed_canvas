@@ -1,11 +1,13 @@
 
+"use client";
+
 import { Navbar } from "@/components/layout/Navbar";
 import { PlaceHolderImages } from "@/app/lib/placeholder-images";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Filter, SlidersHorizontal } from "lucide-react";
+import { Filter, SlidersHorizontal, ArrowUpRight } from "lucide-react";
 
 export default function ExplorePage() {
   const artworks = PlaceHolderImages;
@@ -13,52 +15,58 @@ export default function ExplorePage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Navbar />
-      <main className="container mx-auto px-4 py-8">
-        <header className="mb-10 space-y-4">
-          <h1 className="text-4xl font-bold font-headline">Gallery Exhibition</h1>
-          <p className="text-muted-foreground max-w-2xl">
-            Explore a diverse range of Zambian art. Filter by medium, artist, or price to find the perfect addition to your collection.
-          </p>
+      <main className="container mx-auto px-4 py-12">
+        <header className="mb-16 space-y-6 max-w-4xl">
+          <div className="space-y-2">
+            <h1 className="text-6xl md:text-8xl font-bold font-headline tracking-tighter">The Collection</h1>
+            <p className="text-xl text-muted-foreground font-light leading-relaxed">
+              From the thunder of Mosi-oa-Tunya to the rhythmic soul of the Ingoma drum. 
+              Discover the curated essence of Zambian artistry.
+            </p>
+          </div>
           
-          <div className="flex flex-wrap gap-4 items-center">
-            <Button variant="outline" className="rounded-full flex items-center gap-2 border-white/10 text-white">
+          <div className="flex flex-wrap gap-4 items-center pt-4">
+            <Button variant="outline" className="rounded-none flex items-center gap-2 border-white/10 text-white hover:bg-white hover:text-black transition-all">
               <Filter className="h-4 w-4" /> Category
             </Button>
-            <Button variant="outline" className="rounded-full flex items-center gap-2 border-white/10 text-white">
+            <Button variant="outline" className="rounded-none flex items-center gap-2 border-white/10 text-white hover:bg-white hover:text-black transition-all">
               <SlidersHorizontal className="h-4 w-4" /> Price Range
             </Button>
             <div className="flex-grow"></div>
-            <div className="flex gap-2">
-              <Badge variant="secondary" className="px-3 py-1 cursor-pointer hover:bg-primary hover:text-black transition-colors rounded-none">All</Badge>
-              <Badge variant="outline" className="px-3 py-1 cursor-pointer hover:bg-primary hover:text-black transition-colors rounded-none border-white/10">Paintings</Badge>
-              <Badge variant="outline" className="px-3 py-1 cursor-pointer hover:bg-primary hover:text-black transition-colors rounded-none border-white/10">Carvings</Badge>
-              <Badge variant="outline" className="px-3 py-1 cursor-pointer hover:bg-primary hover:text-black transition-colors rounded-none border-white/10">Textiles</Badge>
+            <div className="flex gap-4">
+              <button className="text-[10px] uppercase tracking-[0.3em] font-bold border-b-2 border-white pb-1">All Works</button>
+              <button className="text-[10px] uppercase tracking-[0.3em] font-bold text-muted-foreground hover:text-white transition-colors pb-1">Paintings</button>
+              <button className="text-[10px] uppercase tracking-[0.3em] font-bold text-muted-foreground hover:text-white transition-colors pb-1">Sculptures</button>
             </div>
           </div>
         </header>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
           {artworks.map((art) => (
             <Link href={`/artwork/${art.id}`} key={art.id} className="group block">
-              <div className="relative aspect-[3/4] mb-4 gallery-border overflow-hidden">
+              <div className="relative aspect-[4/5] mb-6 gallery-border overflow-hidden bg-neutral-900">
                 <Image 
                   src={art.imageUrl} 
                   alt={art.title}
                   fill
-                  className="object-cover transition-transform group-hover:scale-105 duration-500"
+                  className="object-cover grayscale-[0.4] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
                   data-ai-hint={art.imageHint}
                 />
-                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <Button className="bg-white text-black hover:bg-white/90 rounded-none">View Details</Button>
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <div className="h-16 w-16 rounded-full border border-white flex items-center justify-center text-white">
+                    <ArrowUpRight className="h-6 w-6" />
+                  </div>
                 </div>
               </div>
-              <div className="space-y-1">
-                <h3 className="font-bold text-lg leading-tight truncate font-headline">{art.title}</h3>
-                <p className="text-xs text-muted-foreground italic truncate">Chanda Mwamba</p>
-                <div className="flex items-center justify-between pt-1">
-                  <span className="font-bold text-white">ZMW 3,200</span>
-                  <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">New</span>
+              <div className="space-y-3">
+                <div className="flex items-start justify-between">
+                  <h3 className="font-bold text-3xl leading-none font-headline tracking-tight">{art.title}</h3>
+                  <span className="text-xs font-bold font-mono pt-1">ZMW 3,500</span>
                 </div>
+                <p className="text-xs text-muted-foreground uppercase tracking-[0.2em] font-bold">Chanda Mwamba</p>
+                <p className="text-sm text-muted-foreground line-clamp-2 font-light leading-relaxed">
+                  {art.description}
+                </p>
               </div>
             </Link>
           ))}
