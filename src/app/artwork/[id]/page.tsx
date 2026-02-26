@@ -3,7 +3,7 @@
 
 import { Navbar } from "@/components/layout/Navbar";
 import { Button } from "@/components/ui/button";
-import { PlaceHolderImages } from "@/app/lib/placeholder-images";
+import { PlaceHolderImages, Artist } from "@/app/lib/placeholder-images";
 import Image from "next/image";
 import { Heart, MessageSquare, Share2, ShieldCheck, Truck, ArrowLeft, ZoomIn } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
@@ -40,12 +40,12 @@ export default function ArtworkDetailPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Image Gallery */}
           <div className="lg:col-span-7 space-y-4">
-            <div className="relative aspect-[4/5] overflow-hidden gallery-border group">
+            <div className="relative aspect-[4/5] overflow-hidden gallery-border group bg-neutral-900">
               <Image 
                 src={artwork.imageUrl} 
                 alt={artwork.title} 
                 fill
-                className="object-cover"
+                className="object-cover transition-all duration-700"
                 priority
                 data-ai-hint={artwork.imageHint}
               />
@@ -55,7 +55,7 @@ export default function ArtworkDetailPage() {
             </div>
             <div className="grid grid-cols-4 gap-4">
               {[1, 2, 3, 4].map(i => (
-                <div key={i} className="relative aspect-square gallery-border overflow-hidden cursor-pointer hover:ring-1 ring-white transition-all opacity-50 hover:opacity-100">
+                <div key={i} className="relative aspect-square gallery-border overflow-hidden cursor-pointer hover:ring-1 ring-white transition-all opacity-50 hover:opacity-100 bg-neutral-900">
                   <Image src={`https://picsum.photos/seed/detail${i+artwork.id}/300/300`} alt="Detail" fill className="object-cover" />
                 </div>
               ))}
@@ -66,33 +66,33 @@ export default function ArtworkDetailPage() {
           <div className="lg:col-span-5 space-y-8">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <Badge className="bg-white/10 text-white border-none font-bold rounded-none">Original Work</Badge>
+                <div className="bg-white/10 text-white border border-white/20 px-3 py-1 text-[10px] tracking-widest font-bold uppercase">Original Work</div>
                 <div className="flex gap-2">
-                  <Button variant="ghost" size="icon" className="rounded-full hover:bg-white/5"><Heart className="h-5 w-5" /></Button>
-                  <Button variant="ghost" size="icon" className="rounded-full hover:bg-white/5"><Share2 className="h-5 w-5" /></Button>
+                  <Button variant="ghost" size="icon" className="rounded-full hover:bg-white/5 text-white"><Heart className="h-5 w-5" /></Button>
+                  <Button variant="ghost" size="icon" className="rounded-full hover:bg-white/5 text-white"><Share2 className="h-5 w-5" /></Button>
                 </div>
               </div>
               <h1 className="text-4xl md:text-6xl font-bold font-headline leading-tight">{artwork.title}</h1>
               <div className="flex items-center gap-3 py-2">
                 <div className="h-10 w-10 rounded-full overflow-hidden gallery-border">
-                  <Image src="https://picsum.photos/seed/artist/40/40" alt="Artist" width={40} height={40} className="object-cover" />
+                  <Image src={Artist.profileImage} alt={Artist.name} width={40} height={40} className="object-cover" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium">Musa Roy</p>
-                  <Link href="/profile" className="text-xs text-muted-foreground font-bold hover:text-white transition-colors">View Portfolio</Link>
+                  <p className="text-sm font-medium">{Artist.name}</p>
+                  <Link href="/profile" className="text-xs text-muted-foreground font-bold hover:text-white transition-colors uppercase tracking-widest">View Portfolio</Link>
                 </div>
               </div>
               <div className="text-3xl font-bold text-white py-4 border-y border-white/5">
-                ZMW 2,500
+                ZMW {artwork.price.toLocaleString()}
               </div>
             </div>
 
             <div className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
-                <Button size="lg" className="h-14 text-lg font-bold rounded-none" onClick={handlePurchase}>
+                <Button size="lg" className="h-14 text-xs tracking-[0.2em] uppercase font-bold rounded-none bg-white text-black hover:bg-neutral-200" onClick={handlePurchase}>
                   Acquire Now
                 </Button>
-                <Button variant="outline" size="lg" className="h-14 text-lg font-bold border-white/10 text-white hover:bg-white/5 rounded-none" asChild>
+                <Button variant="outline" size="lg" className="h-14 text-xs tracking-[0.2em] uppercase font-bold border-white/10 text-white hover:bg-white/5 rounded-none" asChild>
                   <Link href="/messages">
                     <MessageSquare className="mr-2 h-5 w-5" /> Inquire
                   </Link>
@@ -111,36 +111,19 @@ export default function ArtworkDetailPage() {
               <div className="grid grid-cols-2 gap-y-6 gap-x-8 text-sm pt-6 border-t border-white/5">
                 <div>
                   <span className="block text-muted-foreground font-medium mb-1 uppercase text-[10px] tracking-widest">Medium</span>
-                  <span className="font-bold">Mixed Media / Acrylic</span>
+                  <span className="font-bold">{artwork.medium}</span>
                 </div>
                 <div>
                   <span className="block text-muted-foreground font-medium mb-1 uppercase text-[10px] tracking-widest">Dimensions</span>
-                  <span className="font-bold">36 x 48 inches</span>
+                  <span className="font-bold">{artwork.dimensions}</span>
                 </div>
                 <div>
                   <span className="block text-muted-foreground font-medium mb-1 uppercase text-[10px] tracking-widest">Year</span>
-                  <span className="font-bold">2024</span>
+                  <span className="font-bold">{artwork.year}</span>
                 </div>
                 <div>
                   <span className="block text-muted-foreground font-medium mb-1 uppercase text-[10px] tracking-widest">Authenticity</span>
                   <span className="font-bold">Signed Original</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white/5 p-6 rounded-none space-y-4 border border-white/5">
-              <div className="flex items-start gap-3">
-                <ShieldCheck className="h-5 w-5 text-white/40 shrink-0" />
-                <div>
-                  <p className="font-bold text-sm">Escrow Protection</p>
-                  <p className="text-xs text-muted-foreground">Payment is only released after delivery is verified.</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <Truck className="h-5 w-5 text-white/40 shrink-0" />
-                <div>
-                  <p className="font-bold text-sm">Insured Logistics</p>
-                  <p className="text-xs text-muted-foreground">Global shipping handled by professional art handlers.</p>
                 </div>
               </div>
             </div>

@@ -4,7 +4,13 @@
     "name": "Musa Roy",
     "profileImage": "https://picsum.photos/seed/musaroy-artist/800/1000",
     "imageHint": "professional man portrait",
-    "bio": "Contemporary mixed-media artist exploring the intersection of traditional Zambian motifs and modern urban life. My work is inspired by the vibrant rhythms of the Copperbelt and the serene landscapes of our national parks."
+    "bio": "Contemporary mixed-media artist exploring the intersection of traditional Zambian motifs and modern urban life. My work is inspired by the vibrant rhythms of the Copperbelt and the serene landscapes of our national parks.",
+    "location": "Lusaka, Zambia",
+    "socials": {
+      "instagram": "@musaroy_art",
+      "twitter": "@musaroy",
+      "website": "www.musaroy.com"
+    }
   },
   "placeholderImages": [
     {
@@ -12,42 +18,66 @@
       "title": "Ingoma: The Divine Rhythm",
       "description": "A detailed acrylic study of the traditional Ngoni drum, capturing the resonance of Zambian heritage.",
       "imageUrl": "https://picsum.photos/seed/ingoma/800/1000",
-      "imageHint": "Zambian drum"
+      "imageHint": "Zambian drum",
+      "price": 2500,
+      "year": "2024",
+      "medium": "Mixed Media / Acrylic",
+      "dimensions": "36 x 48 inches"
     },
     {
       "id": "art-2",
       "title": "Mosi-oa-Tunya",
       "description": "The Smoke That Thunders. A breathtaking impressionist view of the Victoria Falls during the emerald season.",
       "imageUrl": "https://picsum.photos/seed/falls/1200/800",
-      "imageHint": "Victoria Falls"
+      "imageHint": "Victoria Falls",
+      "price": 4800,
+      "year": "2023",
+      "medium": "Oil on Canvas",
+      "dimensions": "60 x 40 inches"
     },
     {
       "id": "art-3",
       "title": "Dr. Kenneth Kaunda: The Patriot",
       "description": "A solemn and vibrant portrait of Zambia's founding father, celebrating the spirit of One Zambia, One Nation.",
       "imageUrl": "https://picsum.photos/seed/kk/800/800",
-      "imageHint": "Kenneth Kaunda"
+      "imageHint": "Kenneth Kaunda",
+      "price": 3200,
+      "year": "2024",
+      "medium": "Acrylic Portrait",
+      "dimensions": "30 x 30 inches"
     },
     {
       "id": "art-4",
       "title": "Lusaka Skyline at Dusk",
       "description": "Contemporary cityscape depicting the urban pulse of Cairo Road as the golden hour settles over the capital.",
       "imageUrl": "https://picsum.photos/seed/lusaka/1000/600",
-      "imageHint": "Lusaka city"
+      "imageHint": "Lusaka city",
+      "price": 1900,
+      "year": "2024",
+      "medium": "Digital Painting",
+      "dimensions": "24 x 36 inches"
     },
     {
       "id": "art-5",
       "title": "Luangwa Giant",
       "description": "A charcoal and ochre depiction of a majestic elephant roaming the South Luangwa National Park.",
       "imageUrl": "https://picsum.photos/seed/elephant/800/600",
-      "imageHint": "Zambian elephant"
+      "imageHint": "Zambian elephant",
+      "price": 2100,
+      "year": "2023",
+      "medium": "Charcoal and Ochre",
+      "dimensions": "20 x 30 inches"
     },
     {
       "id": "art-6",
       "title": "Chitenge Reverie",
       "description": "Abstract patterns and textures inspired by the vibrant textiles found in markets across the Copperbelt.",
       "imageUrl": "https://picsum.photos/seed/chitenge/800/1000",
-      "imageHint": "African textile"
+      "imageHint": "African textile",
+      "price": 1500,
+      "year": "2024",
+      "medium": "Textile Collage",
+      "dimensions": "24 x 24 inches"
     }
   ]
 }

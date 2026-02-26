@@ -2,7 +2,7 @@
 "use client";
 
 import { Navbar } from "@/components/layout/Navbar";
-import { PlaceHolderImages } from "@/app/lib/placeholder-images";
+import { PlaceHolderImages, Artist } from "@/app/lib/placeholder-images";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -20,7 +20,7 @@ export default function ExplorePage() {
             <h1 className="text-6xl md:text-8xl font-bold font-headline tracking-tighter">The Collection</h1>
             <p className="text-xl text-muted-foreground font-light leading-relaxed">
               From the thunder of Mosi-oa-Tunya to the rhythmic soul of the Ingoma drum. 
-              Discover the curated essence of Zambian artistry by Musa Roy.
+              Discover the curated essence of Zambian artistry by {Artist.name}.
             </p>
           </div>
           
@@ -60,9 +60,9 @@ export default function ExplorePage() {
               <div className="space-y-3">
                 <div className="flex items-start justify-between">
                   <h3 className="font-bold text-3xl leading-none font-headline tracking-tight">{art.title}</h3>
-                  <span className="text-xs font-bold font-mono pt-1">ZMW 3,500</span>
+                  <span className="text-xs font-bold font-mono pt-1">ZMW {art.price.toLocaleString()}</span>
                 </div>
-                <p className="text-xs text-muted-foreground uppercase tracking-[0.2em] font-bold">Musa Roy</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-[0.2em] font-bold">{Artist.name}</p>
                 <p className="text-sm text-muted-foreground line-clamp-2 font-light leading-relaxed">
                   {art.description}
                 </p>

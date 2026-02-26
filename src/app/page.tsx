@@ -9,7 +9,7 @@ import { ArrowRight, Palette, ArrowUpRight } from "lucide-react";
 
 export default function Home() {
   const featuredArt = PlaceHolderImages.slice(0, 3);
-  const heroImage = PlaceHolderImages.find(img => img.id === "art-2") || PlaceHolderImages[1];
+  const heroImage = PlaceHolderImages.find(img => img.id === "art-1") || PlaceHolderImages[0];
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
@@ -20,16 +20,16 @@ export default function Home() {
         <section className="relative min-h-[95vh] flex items-center overflow-hidden bg-black">
           <div className="absolute inset-0 african-pattern opacity-10 pointer-events-none" />
           <div className="container mx-auto px-4 z-10 grid md:grid-cols-12 gap-12 items-center">
-            <div className="md:col-span-7 space-y-12 animate-in fade-in slide-in-from-left-8 duration-1000">
+            <div className="md:col-span-7 space-y-12">
               <div className="space-y-6">
-                <Badge className="bg-white/10 text-white border-white/20 px-4 py-1 rounded-none text-[10px] tracking-[0.4em] uppercase font-bold">
+                <div className="bg-white/10 text-white border border-white/20 inline-block px-4 py-1 text-[10px] tracking-[0.4em] uppercase font-bold">
                   Authentic Zambian Canvas
-                </Badge>
+                </div>
                 <h1 className="text-7xl md:text-[10rem] font-bold leading-[0.8] tracking-tighter text-white font-headline">
                   Artistic <span className="text-white italic block">Soul</span>
                 </h1>
                 <p className="text-xl text-muted-foreground max-w-md leading-relaxed font-body font-light">
-                  A curated minimalist sanctuary for the finest masterpieces. Represented by <span className="text-white font-medium">{Artist.name}</span>.
+                  A curated sanctuary for the finest masterpieces. Represented by <span className="text-white font-medium">{Artist.name}</span>.
                 </p>
               </div>
               <div className="flex flex-wrap gap-8 pt-4">
@@ -60,7 +60,6 @@ export default function Home() {
                   <p className="text-xs text-white/60 tracking-[0.3em] uppercase mt-2 font-bold">Featured Artwork</p>
                 </div>
               </div>
-              <div className="absolute -inset-8 border border-white/5 -z-10 -rotate-2 group-hover:rotate-0 transition-transform duration-1000"></div>
             </div>
           </div>
         </section>
@@ -102,7 +101,7 @@ export default function Home() {
                       <div className="space-y-3">
                         <h3 className="text-3xl font-bold font-headline tracking-tight">{art.title}</h3>
                         <p className="text-[10px] text-muted-foreground uppercase tracking-[0.4em] font-bold">{Artist.name}</p>
-                        <p className="text-white font-mono text-lg pt-4">ZMW 2,500</p>
+                        <p className="text-white font-mono text-lg pt-4">ZMW {art.price.toLocaleString()}</p>
                       </div>
                     </CardContent>
                   </Card>
@@ -112,7 +111,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Artist Profile Section (Added as requested) */}
+        {/* Artist Profile Section */}
         <section className="py-40 bg-black border-t border-white/5 overflow-hidden">
           <div className="container mx-auto px-4 grid md:grid-cols-2 gap-24 items-center">
             <div className="relative aspect-[3/4] gallery-border grayscale hover:grayscale-0 transition-all duration-1000 group">
@@ -141,24 +140,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        {/* Call to Action */}
-        <section className="py-40 bg-neutral-950 border-y border-white/5 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-1/2 h-full african-pattern opacity-10 pointer-events-none" />
-          <div className="container mx-auto px-4 text-center space-y-16 relative z-10">
-            <h2 className="text-6xl md:text-[12rem] font-bold font-headline leading-none tracking-tighter">Your Vision <span className="italic block text-white/40">Exhibited</span></h2>
-            <p className="text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
-              Join the most exclusive digital ecosystem for Zambian creators. Secure international logistics, escrow protection, and professional curation.
-            </p>
-            <div className="pt-8">
-              <Link href="/sell">
-                <Button size="lg" className="bg-white text-black hover:bg-neutral-200 h-24 px-20 text-[12px] tracking-[0.5em] uppercase font-bold rounded-none">
-                  Begin Exhibition
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </section>
       </main>
 
       <footer className="bg-background py-32 border-t border-white/5">
@@ -180,16 +161,14 @@ export default function Home() {
               <li><Link href="/explore" className="hover:text-white transition-colors">Catalog</Link></li>
               <li><Link href="/explore?category=paintings" className="hover:text-white transition-colors">Paintings</Link></li>
               <li><Link href="/explore?category=sculpture" className="hover:text-white transition-colors">Sculptures</Link></li>
-              <li><Link href="/explore?category=digital" className="hover:text-white transition-colors">Digital</Link></li>
             </ul>
           </div>
           <div className="space-y-8">
             <h4 className="font-bold text-white uppercase tracking-[0.3em] text-[10px]">Collective</h4>
             <ul className="space-y-4 text-xs text-muted-foreground font-bold tracking-widest uppercase">
               <li><Link href="/profile" className="hover:text-white transition-colors">{Artist.name}</Link></li>
-              <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-              <li><Link href="/faq" className="hover:text-white transition-colors">Inquiries</Link></li>
-              <li><Link href="/terms" className="hover:text-white transition-colors">Legal</Link></li>
+              <li><Link href="/messages" className="hover:text-white transition-colors">Inquiries</Link></li>
+              <li><Link href="/sell" className="hover:text-white transition-colors">Exhibit</Link></li>
             </ul>
           </div>
         </div>
@@ -198,13 +177,5 @@ export default function Home() {
         </div>
       </footer>
     </div>
-  );
-}
-
-function Badge({ children, className }: { children: React.ReactNode; className?: string }) {
-  return (
-    <span className={`inline-block border px-3 py-1 text-xs font-semibold ${className}`}>
-      {children}
-    </span>
   );
 }

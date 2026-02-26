@@ -47,8 +47,8 @@ export default function ProfilePage() {
                 <div className="space-y-1">
                   <h1 className="text-6xl font-bold font-headline tracking-tighter">{Artist.name}</h1>
                   <div className="flex items-center gap-4 text-muted-foreground text-sm font-bold uppercase tracking-widest">
-                    <span className="flex items-center gap-1"><MapPin className="h-3 w-3" /> Lusaka, ZM</span>
-                    <span>Joined Jan 2024</span>
+                    <span className="flex items-center gap-1"><MapPin className="h-3 w-3" /> {Artist.location}</span>
+                    <span>Professional Collective</span>
                   </div>
                 </div>
                 <div className="flex gap-4">
@@ -57,7 +57,7 @@ export default function ProfilePage() {
                       <Plus className="mr-2 h-4 w-4" /> New Exhibit
                     </Button>
                   </Link>
-                  <Button variant="outline" size="icon" className="rounded-none border-white/10 hover:bg-white/5 h-12 w-12">
+                  <Button variant="outline" size="icon" className="rounded-none border-white/10 hover:bg-white/5 h-12 w-12 text-white">
                     <Settings className="h-4 w-4" />
                   </Button>
                 </div>
@@ -135,7 +135,7 @@ export default function ProfilePage() {
                       <h3 className="font-bold text-lg">{art.title}</h3>
                       <p className="text-xs text-muted-foreground">Acquired Mar 2024</p>
                     </div>
-                    <Button variant="ghost" size="icon" className="hover:bg-white/5">
+                    <Button variant="ghost" size="icon" className="hover:bg-white/5 text-white">
                       <ExternalLink className="h-4 w-4" />
                     </Button>
                   </div>

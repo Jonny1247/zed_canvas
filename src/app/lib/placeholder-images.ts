@@ -7,6 +7,10 @@ export type ImagePlaceholder = {
   description: string;
   imageUrl: string;
   imageHint: string;
+  price: number;
+  year: string;
+  medium: string;
+  dimensions: string;
 };
 
 export type ArtistMetadata = {
@@ -14,6 +18,12 @@ export type ArtistMetadata = {
   profileImage: string;
   imageHint: string;
   bio: string;
+  location: string;
+  socials: {
+    instagram: string;
+    twitter: string;
+    website: string;
+  };
 };
 
 export const PlaceHolderImages: ImagePlaceholder[] = data.placeholderImages;

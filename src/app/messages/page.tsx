@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Artist } from "@/app/lib/placeholder-images";
 import { Search, Send, Image as ImageIcon, MoreVertical, Phone } from "lucide-react";
 
 export default function MessagesPage() {
@@ -14,7 +15,7 @@ export default function MessagesPage() {
   const [newMessage, setNewMessage] = useState("");
 
   const contacts = [
-    { id: 0, name: "Musa Roy", lastMsg: "Is the shipping to Ndola available?", time: "2m ago", active: true },
+    { id: 0, name: Artist.name, lastMsg: "Is the shipping to Ndola available?", time: "2m ago", active: true },
     { id: 1, name: "Lusaka Art Collective", lastMsg: "We loved your latest submission!", time: "1h ago", active: false },
     { id: 2, name: "Kelvin Phiri", lastMsg: "What is your best price for the carving?", time: "Yesterday", active: false },
     { id: 3, name: "Mercy Banda", lastMsg: "The painting arrived safely, thank you!", time: "Oct 12", active: false },
@@ -35,10 +36,10 @@ export default function MessagesPage() {
           {/* Contacts List */}
           <div className="w-full md:w-80 border-r border-white/5 flex flex-col shrink-0 bg-background">
             <div className="p-4 border-b border-white/5 space-y-4">
-              <h2 className="text-xl font-bold font-headline text-white">Messages</h2>
+              <h2 className="text-xl font-bold font-headline text-white uppercase tracking-widest">Messages</h2>
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input placeholder="Search chats..." className="pl-10 h-10 rounded-full bg-white/5 border-none text-white placeholder:text-muted-foreground" />
+                <Input placeholder="Search chats..." className="pl-10 h-10 rounded-none bg-white/5 border-none text-white placeholder:text-muted-foreground" />
               </div>
             </div>
             <ScrollArea className="flex-grow">
@@ -49,13 +50,13 @@ export default function MessagesPage() {
                   className={`p-4 flex gap-3 cursor-pointer hover:bg-white/5 transition-colors border-b border-white/5 last:border-0 ${activeChat === contact.id ? 'bg-white/10 border-l-4 border-l-white' : ''}`}
                 >
                   <Avatar>
-                    <AvatarImage src={`https://picsum.photos/seed/contact${idx}/100/100`} />
+                    <AvatarImage src={contact.id === 0 ? Artist.profileImage : `https://picsum.photos/seed/contact${idx}/100/100`} />
                     <AvatarFallback>{contact.name[0]}</AvatarFallback>
                   </Avatar>
                   <div className="flex-grow overflow-hidden">
                     <div className="flex justify-between items-start mb-1">
                       <p className="font-bold text-sm truncate text-white">{contact.name}</p>
-                      <span className="text-[10px] text-muted-foreground shrink-0">{contact.time}</span>
+                      <span className="text-[10px] text-muted-foreground shrink-0 uppercase tracking-tighter">{contact.time}</span>
                     </div>
                     <p className="text-xs text-muted-foreground truncate">{contact.lastMsg}</p>
                   </div>
@@ -66,11 +67,10 @@ export default function MessagesPage() {
 
           {/* Chat Window */}
           <div className="hidden md:flex flex-col flex-grow">
-            {/* Chat Header */}
             <div className="p-4 border-b border-white/5 flex items-center justify-between bg-background z-10">
               <div className="flex items-center gap-3">
                 <Avatar>
-                  <AvatarImage src={`https://picsum.photos/seed/contact${activeChat}/100/100`} />
+                  <AvatarImage src={activeChat === 0 ? Artist.profileImage : `https://picsum.photos/seed/contact${activeChat}/100/100`} />
                   <AvatarFallback>MR</AvatarFallback>
                 </Avatar>
                 <div>
@@ -84,20 +84,19 @@ export default function MessagesPage() {
               </div>
             </div>
 
-            {/* Messages Area */}
             <ScrollArea className="flex-grow p-6 bg-black/50 african-pattern">
               <div className="space-y-6">
                 {messages.map((msg) => (
                   <div key={msg.id} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
                     <div className={`max-w-[70%] space-y-1`}>
-                      <div className={`p-4 rounded-2xl shadow-sm ${
+                      <div className={`p-4 rounded-none shadow-sm ${
                         msg.sender === 'user' 
-                        ? 'bg-white text-black rounded-tr-none font-medium' 
-                        : 'bg-white/10 text-white rounded-tl-none border border-white/5'
+                        ? 'bg-white text-black font-medium' 
+                        : 'bg-white/10 text-white border border-white/5'
                       }`}>
                         <p className="text-sm leading-relaxed">{msg.text}</p>
                       </div>
-                      <p className={`text-[10px] text-muted-foreground ${msg.sender === 'user' ? 'text-right' : 'text-left'}`}>
+                      <p className={`text-[10px] text-muted-foreground uppercase tracking-widest ${msg.sender === 'user' ? 'text-right' : 'text-left'}`}>
                         {msg.time}
                       </p>
                     </div>
@@ -106,20 +105,18 @@ export default function MessagesPage() {
               </div>
             </ScrollArea>
 
-            {/* Input Area */}
             <div className="p-4 border-t border-white/5 bg-background">
               <div className="flex items-center gap-2">
                 <Button variant="ghost" size="icon" className="shrink-0 text-white hover:bg-white/5"><ImageIcon className="h-5 w-5" /></Button>
                 <Input 
                   placeholder="Type your message..." 
-                  className="flex-grow rounded-full bg-white/5 border-none h-11 text-white"
+                  className="flex-grow rounded-none bg-white/5 border-none h-11 text-white"
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
-                  onKeyDown={(e) => e.key === 'Enter' && setNewMessage("")}
                 />
                 <Button 
                   size="icon" 
-                  className="shrink-0 rounded-full h-11 w-11 bg-white text-black hover:bg-neutral-200"
+                  className="shrink-0 rounded-none h-11 w-11 bg-white text-black hover:bg-neutral-200"
                   onClick={() => setNewMessage("")}
                 >
                   <Send className="h-5 w-5" />
