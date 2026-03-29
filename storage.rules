@@ -1,0 +1,37 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Auth & Role helpers
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      // We assume Firestore rules use default database
+      return isAuthenticated() && firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+    
+    function isArtist() {
+      return isAuthenticated() && firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == 'artist';
+    }
+
+    match /artworks/{userId}/{fileName} {
+      // Anyone can view artwork images
+      allow read: if true;
+      // Artists can only upload to their own folder, admins have full access
+      allow write: if isAdmin() || (isArtist() && request.auth.uid == userId);
+    }
+    
+    match /messages/{userId}/{fileName} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    // Default deny for other paths
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

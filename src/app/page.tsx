@@ -1,15 +1,33 @@
+"use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Navbar } from "@/components/layout/Navbar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { PlaceHolderImages, Artist } from "@/app/lib/placeholder-images";
+import { Artist } from "@/app/lib/placeholder-images";
+import type { ImagePlaceholder } from "@/app/lib/placeholder-images";
+import { getApprovedArtworks } from "@/lib/firebase/firestore";
 import { ArrowRight, Palette, ArrowUpRight } from "lucide-react";
 
 export default function Home() {
-  const featuredArt = PlaceHolderImages.slice(0, 3);
-  const heroImage = PlaceHolderImages.find(img => img.id === "art-1") || PlaceHolderImages[0];
+  const [artworks, setArtworks] = useState<ImagePlaceholder[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getApprovedArtworks().then(data => {
+      setArtworks(data);
+      setLoading(false);
+    }).catch(console.error);
+  }, []);
+
+  if (loading) {
+    return <div className="min-h-screen flex items-center justify-center bg-black text-white">Loading Zambian Canvas...</div>;
+  }
+
+  const featuredArt = artworks.slice(0, 3);
+  const heroImage = artworks.find(img => img.id === "art-1") || artworks[0];
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
@@ -45,22 +63,24 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            <div className="md:col-span-5 relative hidden md:block group h-[80vh]">
-              <div className="relative h-full w-full gallery-border overflow-hidden shadow-2xl transition-transform duration-1000 group-hover:scale-[1.01]">
-                <Image 
-                  src={heroImage.imageUrl} 
-                  alt={heroImage.title} 
-                  fill
-                  className="object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-1000"
-                  priority
-                  data-ai-hint={heroImage.imageHint}
-                />
-                <div className="absolute bottom-0 left-0 right-0 p-12 bg-gradient-to-t from-black via-black/40 to-transparent">
-                  <p className="text-white font-headline text-4xl font-bold tracking-tight">{heroImage.title}</p>
-                  <p className="text-xs text-white/60 tracking-[0.3em] uppercase mt-2 font-bold">Featured Artwork</p>
+            {heroImage && (
+              <div className="md:col-span-5 relative hidden md:block group h-[80vh]">
+                <div className="relative h-full w-full gallery-border overflow-hidden shadow-2xl transition-transform duration-1000 group-hover:scale-[1.01]">
+                  <Image 
+                    src={heroImage.imageUrl} 
+                    alt={heroImage.title} 
+                    fill
+                    className="object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-1000"
+                    priority
+                    data-ai-hint={heroImage.imageHint}
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 p-12 bg-gradient-to-t from-black via-black/40 to-transparent">
+                    <p className="text-white font-headline text-4xl font-bold tracking-tight">{heroImage.title}</p>
+                    <p className="text-xs text-white/60 tracking-[0.3em] uppercase mt-2 font-bold">Featured Artwork</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </section>
 
