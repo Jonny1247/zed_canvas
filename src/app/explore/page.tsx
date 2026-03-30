@@ -32,23 +32,30 @@ export default function ExplorePage() {
   const [artistCache, setArtistCache] = useState<{[key: string]: any}>({});
 
   useEffect(() => {
-    setLoading(true);
-    getApprovedArtworks(filters).then(async (data) => {
-      setArtworks(data);
-      setLoading(false);
-      
-      // Fetch names for unique artists
-      const uniqueArtistIds = Array.from(new Set(data.map(a => (a as any).artistId).filter(Boolean)));
-      for (const id of uniqueArtistIds) {
-        if (!artistCache[id as string]) {
-          getUserById(id as string).then(user => {
-            if (user) {
-              setArtistCache(prev => ({ ...prev, [id as string]: user }));
-            }
-          });
+    async function fetchArt() {
+      setLoading(true);
+      try {
+        const data = await getApprovedArtworks(filters);
+        setArtworks(data);
+        
+        // Fetch names for unique artists
+        const uniqueArtistIds = Array.from(new Set(data.map(a => (a as any).artistId).filter(Boolean)));
+        for (const id of uniqueArtistIds) {
+          if (!artistCache[id as string]) {
+            getUserById(id as string).then(user => {
+              if (user) {
+                setArtistCache(prev => ({ ...prev, [id as string]: user }));
+              }
+            });
+          }
         }
+      } catch (err) {
+        console.error("Error loading artworks:", err);
+      } finally {
+        setLoading(false);
       }
-    }).catch(console.error);
+    }
+    fetchArt();
   }, [filters]);
 
   return (

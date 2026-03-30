@@ -16,10 +16,17 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getApprovedArtworks().then(data => {
-      setArtworks(data);
-      setLoading(false);
-    }).catch(console.error);
+    async function fetchArt() {
+      try {
+        const data = await getApprovedArtworks();
+        setArtworks(data);
+      } catch (error) {
+        console.error("Error fetching artworks:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchArt();
   }, []);
 
   if (loading) {

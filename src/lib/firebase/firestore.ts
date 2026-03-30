@@ -13,7 +13,8 @@ export interface ArtworkFilter {
 }
 
 export async function getApprovedArtworks(filters?: ArtworkFilter): Promise<ImagePlaceholder[]> {
-  let q = query(collection(db, "artworks"));
+  // Add a filter for "approved" status for public view
+  let q = query(collection(db, "artworks"), where("status", "==", "approved"));
   
   const querySnapshot = await getDocs(q);
   let artworks = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as any));

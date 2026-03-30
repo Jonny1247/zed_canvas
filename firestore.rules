@@ -2,10 +2,10 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     function isAdmin() {
-      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+      return request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
     }
     function isArtist() {
-      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'artist';
+      return request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'artist';
     }
 
     // Users: readable by signed-in users, self-writable (can't self-assign admin)
@@ -17,7 +17,8 @@ service cloud.firestore {
 
     // Artworks: approved ones are public; artists manage their own; admins manage all
     match /artworks/{artworkId} {
-      allow read: if resource.data.status == 'approved' || (request.auth != null && (isAdmin() || resource.data.artistId == request.auth.uid));
+      allow read: if resource.data.status == 'approved' || 
+                   (request.auth != null && (isAdmin() || resource.data.artistId == request.auth.uid));
       allow create: if request.auth != null && isArtist();
       allow update: if request.auth != null && (isAdmin() || resource.data.artistId == request.auth.uid);
       allow delete: if request.auth != null && (isAdmin() || resource.data.artistId == request.auth.uid);
