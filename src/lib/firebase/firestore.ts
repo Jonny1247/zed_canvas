@@ -173,6 +173,35 @@ export async function verifyCustomerOTP(userId: string, enteredCode: string) {
   return false;
 }
 
+export async function submitVerificationRequest(data: {
+  userId: string;
+  role: 'artist' | 'customer';
+  portraitUrl?: string;
+  nrcFrontUrl?: string;
+  nrcBackUrl?: string;
+  portfolioUrl?: string;
+}) {
+  const verificationsRef = collection(db, "verifications");
+  await addDoc(verificationsRef, {
+    ...data,
+    status: 'pending',
+    createdAt: serverTimestamp(),
+  });
+  // Update user's verification status to pending
+  await updateDoc(doc(db, "users", data.userId), {
+    verificationStatus: 'pending',
+  });
+}
+
+export async function submitCustomerOTP(userId: string, otp: string) {
+  const expiry = new Date(Date.now() + 10 * 60 * 1000).toISOString(); // 10 minutes
+  await setDoc(doc(db, "otps", userId), {
+    code: otp,
+    expiry,
+    createdAt: serverTimestamp(),
+  });
+}
+
 export async function getPendingVerifications() {
   const q = query(
     collection(db, "verifications"), 

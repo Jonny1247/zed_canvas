@@ -6,11 +6,25 @@ export type ImagePlaceholder = {
   title: string;
   description: string;
   imageUrl: string;
+  imageUrls?: string[];
   imageHint: string;
   price: number;
   year: string;
   medium: string;
   dimensions: string;
+  // Extended artwork fields
+  artistId?: string;
+  category?: string;
+  isNegotiable?: boolean;
+  availability?: "Available" | "Sold" | "Reserved";
+  materials?: string;
+  story?: string;
+  tags?: string[];
+  location?: string;
+  views?: number;
+  isVerified?: boolean;
+  verificationStatus?: "unverified" | "pending" | "approved" | "rejected";
+  status?: string;
 };
 
 export type ArtistMetadata = {

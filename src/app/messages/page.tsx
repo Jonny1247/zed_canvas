@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -30,7 +30,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
-export default function MessagesPage() {
+function MessagesInner() {
   const { user } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -243,10 +243,7 @@ export default function MessagesPage() {
     }
   };
 
-  const handleReport = async () => { ... } // (Skipping repetition, implementing inline below)
-  const handleBlock = async () => { ... } 
 
-  // Wait, I need to implement them inside to avoid undefined behavior.
   const handleReportAction = async () => {
     if (!user || !activeConv) return;
     try {
@@ -567,5 +564,20 @@ export default function MessagesPage() {
         </DialogContent>
       </Dialog>
     </div>
+  );
+}
+
+export default function MessagesPage() {
+  return (
+    <Suspense fallback={
+      <div className="h-screen flex flex-col bg-background text-foreground">
+        <Navbar />
+        <main className="flex-grow flex items-center justify-center">
+          <div className="animate-spin h-8 w-8 border-2 border-white/20 border-t-white rounded-full" />
+        </main>
+      </div>
+    }>
+      <MessagesInner />
+    </Suspense>
   );
 }
