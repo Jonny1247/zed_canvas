@@ -28,7 +28,8 @@ export async function getApprovedArtworks(filters?: ArtworkFilter): Promise<Imag
   const artistChecks = Array.from(new Set(artworks.map((a: any) => a.artistId)));
   
   for (const artistId of artistChecks) {
-    const artistDoc = await getDoc(doc(db, "users", artistId));
+    if (!artistId) continue;
+    const artistDoc = await getDoc(doc(db, "users", artistId as string));
     if (artistDoc.exists() && artistDoc.data().isVerified) {
       verifiedArtistIds.add(artistId);
     }
